@@ -1,5 +1,6 @@
 <?php
 // array for JSON response
+header('Content-Type: application/json');
 $response = array();
  
 // include db connect class

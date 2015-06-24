@@ -1,7 +1,7 @@
 <html>
 <body>
 
-<form action="update_obat.php" method="post">
+<form action="input.php" method="post">
 id: <input type="text" name="obat_id"><br>
 nama: <input type="text" name="obat_nama"><br>
 deskripsi: <input type="text" name="obat_deskripsi"><br>
