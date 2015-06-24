@@ -17,25 +17,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $result = mysql_query("SELECT * FROM admin WHERE username='$input[0]' && password='$input[1]'");
  
     if (!empty($result)) {
-        // check for empty result
         if (mysql_num_rows($result) > 0) {
-            // user node
-
             $response["success"] = 1;
-            // echoing JSON response
             echo json_encode($response);
         } else {
-            // no obat found
             $response["success"] = 0;
-
-            // echo no users JSON
             echo json_encode($response);
         }
     } else {
-        // no obat found
         $response["success"] = 0;
- 
-        // echo no users JSON
         echo json_encode($response);
     }
 } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -52,15 +42,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 							obat_id LIKE '%$key%'";
 		}
     }else {  
-        $query = "SELECT * FROM obat ";
+        $query = "SELECT * FROM obat";
     }
     $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 	
 	if(!empty($result)){
 		if (mysql_num_rows($result) > 0) {
-            // user node
             $response["obat"] = array();
-			
             while($row = mysql_fetch_array($result)){
             $obat = array();
             $obat["obat_id"] = $row["obat_id"];
@@ -76,9 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $response["success"] = 1;
             echo json_encode($response);
         } else {
-            // no obat found
             $response["success"] = 0;
-
             echo json_encode($response);
         }
 	}

@@ -1,6 +1,7 @@
 <?php
-$response = array();
+
 require_once '/db_connect.php';
+$response = array();
 $db = new DB_CONNECT();
 
 $obat_nama = $_POST['obat_nama'];
@@ -23,30 +24,30 @@ if(strlen($_POST['obat_id']) != 0){
 		obat_id = '$obat_id'";
 }else{
 	$query = "INSERT INTO obat (
-	obat_nama,
-	obat_deskripsi,
-	obat_indikasi,
-	obat_harga,
-	obat_jenis) VALUES (
-	'$obat_nama',
-	'$obat_deskripsi',
-	'$obat_indikasi',
-	'$obat_harga',
-	'$obat_jenis'
-	)";
+		obat_nama,
+		obat_deskripsi,
+		obat_indikasi,
+		obat_harga,
+		obat_jenis) VALUES (
+		'$obat_nama',
+		'$obat_deskripsi',
+		'$obat_indikasi',
+		'$obat_harga',
+		'$obat_jenis'
+		)";
 }
-	die($query);
-    $result = mysql_query($query);
-    if (!empty($result)) {
-        if ( mysql_affected_rows() == 1) {
-            $response["success"] = 1;
-            echo json_encode($response);
-        } else {
-            $response["success"] = 0;
-            echo json_encode($response);
-        }
+$result = mysql_query($query);
+if (!empty($result)) {
+    if ( mysql_affected_rows() == 1) {
+        $response["success"] = 1;
+        echo json_encode($response);
     } else {
-        $response["success"] = 2;
+        $response["success"] = 0;
         echo json_encode($response);
     }
+} else {
+        $response["success"] = 2;
+        echo json_encode($response);
+}
+
 ?>
