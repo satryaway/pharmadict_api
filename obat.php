@@ -3,7 +3,7 @@
  * samstudio
  */
 
-header('Content-Type: application/json');
+header('Content-type: application/json; charset=utf-8');
 include "koneksi.php";
 
 $path = $_SERVER[PATH_INFO];
@@ -13,17 +13,32 @@ if($path != null){
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	// POST
-	$input = explode("+", file_get_contents("php://input"));
-    $result = mysql_query("SELECT * FROM admin WHERE username='$input[0]' && password='$input[1]'");
- 
-    if (!empty($result)) {
-        if (mysql_num_rows($result) > 0) {
-            $response["success"] = 1;
-            echo json_encode($response);
-        } else {
-            $response["success"] = 0;
-            echo json_encode($response);
-        }
+	if($path_params[1] == 'login'){
+		$input = explode("+", file_get_contents("php://input"));
+		$query = "SELECT * FROM admin WHERE username='$input[0]' && password='$input[1]'";
+	}else{
+		$obat_nama = $_POST['obat_nama'];
+		$obat_deskripsi = $_POST['obat_deskripsi'];
+		$obat_indikasi = $_POST['obat_indikasi'];
+		$obat_harga = $_POST['obat_harga'];
+		$obat_jenis = $_POST['obat_jenis'];
+		$query = "INSERT INTO obat (
+		obat_nama,
+		obat_deskripsi,
+		obat_indikasi,
+		obat_harga,
+		obat_jenis) VALUES (
+		'$obat_nama',
+		'$obat_deskripsi',
+		'$obat_indikasi',
+		'$obat_harga',
+		'$obat_jenis'
+		)";
+	}
+	mysql_query($query);
+    if (mysql_affected_rows() > 0) {
+        $response["success"] = 1;
+        echo json_encode($response);
     } else {
         $response["success"] = 0;
         echo json_encode($response);
@@ -44,8 +59,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else {  
         $query = "SELECT * FROM obat";
     }
-    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 	
+    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 	if(!empty($result)){
 		if (mysql_num_rows($result) > 0) {
             $response["obat"] = array();
@@ -74,6 +89,26 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$input = file_get_contents("php://input");
     $query = "DELETE FROM obat WHERE obat_id=$input";
     $result = mysql_query($query) or die('Query failed: ' . mysql_error());
+	$resp;
+	if(mysql_affected_rows() > 0){
+		$resp = 1;
+	}else{
+		$resp = 0;
+	}
+	$response["success"] = $resp;
+	echo json_encode($response);
+} else if($_SERVER['REQUEST_METHOD'] == 'PUT'){
+	// PUT
+	$input = explode("+", file_get_contents("php://input"));
+	$query = "UPDATE obat SET 
+		obat_nama='$input[1]',
+		obat_deskripsi='$input[2]',
+		obat_indikasi='$input[3]',
+		obat_harga='$input[4]',
+		obat_jenis='$input[5]'
+		WHERE
+		obat_id = '$input[0]'";
+	$result = mysql_query($query) or die('Query failed: ' . mysql_error());
 	$resp;
 	if(mysql_affected_rows() > 0){
 		$resp = 1;

@@ -3,7 +3,7 @@
 include "koneksi.php";
 
 if (isset ($_POST['username']) && isset ($_POST['password'])) {
-$url = $_SERVER['SERVER_NAME'] . '/pharmadict/obat.php';
+$url = $_SERVER['SERVER_NAME'] . '/pharmadict/obat.php/login';
 $data = $_POST['username'].'+'.md5($_POST['password']);
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);

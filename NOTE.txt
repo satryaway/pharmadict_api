@@ -1,0 +1,9 @@
+NOTE RESTFUL API 
+
+| METHOD | 			URL				 |     Access Via 	  |		Function	|
+|---------------------------------------------------------------------------|
+| POST	 |	obat.php				 |	obat.php		  | Input data		|
+| GET	 |  obat.php/12				 |	obat.php		  |	Get data		|
+| DELETE |  obat.php/9				 |	delete.php		  |	Delete data		|
+| PUT	 |  obat.php/3				 |	input.php		  |	Update data		|
+| POST   |  obat.php/login			 |	login.php		  |	Login			|
