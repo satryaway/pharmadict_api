@@ -1,0 +1,10 @@
+<script type="text/javascript" src="jquery.js"></script>
+<div id="results"></div>
+<script>
+var person = {"obat":[{"obat_id":"21","obat_nama":"Sanmol","obat_deskripsi":"Tiap 0.6 ml mengandung Paracetamol 60 mg (100 mg\/ml) ","obat_indikasi":"Untuk meringankan rasa sakit pada keadaan sakit kepala, sakit gigi, menurunkan demam yang menyertai influenza dan demam setelah imunisasi.","obat_harga":"18000","obat_jenis":"3","obat_pic":"sanmolsirup.jpg","obat_efeksamping":"- Penggunaan jangka lama dan dosis besar dapat menyebabkan kerusakan hati.  - Reaksi hipersensitivitas.","obat_dosis":"Di bawah 1 tahun: 0.6 ml, 3 - 4 kali sehari.  1 - 2 tahun: 0.6 ml - 1.2 ml, 3 - 4 kali sehari.","obat_perhatian":"Hati-hati penggunaan obat ini pada penderita penyakit ginjal.  Bila setelah 2 hari demam tidak menurun atau setelah 5 hari nyeri tidak menghilang, segera hubungi unit pelayanan kesehatan.  Penggunaan obat ini pada penderita yang mengkonsumsi alkohol, dapa","obat_isi":"15","obat_kode":"1"},{"obat_id":"24","obat_nama":"Refagan","obat_deskripsi":null,"obat_indikasi":"Melagakan gejala bersin-bersin, hidung berlendir, hidung tersumbat, pegal-pegal, sakit kepala dan demam yang disebabkan oleh flu, termasuk rhinitis alergi.","obat_harga":"3000","obat_jenis":"1","obat_pic":"refagan.jpg","obat_efeksamping":"Mengantuk, pusing, sakit kepala, jantung berdegup, ketegangan, sulit tidur, sulit buang air kecil, gejala GI, kesemutan, reaksi alergi, mulut kering.","obat_dosis":null,"obat_perhatian":"Penyakit jantung, diabetes melitus, asma bronchial, tekanan darah tinggi, kelebihan hormon tiroid, laktasi, kelainan fungsi liver, kehamilan, penyakit pada kelenjar prostat, gagal ginjal. Dapat mengurangi kemampuan mengendarai kendaraan atau mengoperasika","obat_isi":"4","obat_kode":"1"}],"success":1};
+
+$(document).ready(function(){
+    $("#results").append("<div><pre>" + JSON.stringify(person, null, 4) + "</pre></div>");
+});
+
+</script>
